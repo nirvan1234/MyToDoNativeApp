@@ -12,10 +12,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { Provider ,useSelector,useDispatch} from 'react-redux';
 import {store} from './redux/store';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-// import {createDrawerNavigator} from '@react-navigation/drawer';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,20 +27,17 @@ function HomeTabs() {
           if (route.name === 'To-Do') {
             iconName = 'clipboard-list';
             size = focused ? 25 : 20;
-            return (
-              <FontAwesome5
-                name='plus'
-                size= '25'
-              />
-            );
           } else if (route.name === 'Done') {
-            return (
-              <FontAwesome5
-                name= 'plus'
-                size= '25'
-              />
-            );
+            iconName = 'clipboard-check';
+            size = focused ? 25 : 20;
           }
+          return (
+            <FontAwesome5
+              name={iconName}
+              size={size}
+              color={color}
+            />
+          );
         }
       })
     }
