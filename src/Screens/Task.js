@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useContext} from 'react'
 import { Alert, Modal, StyleSheet, Text, TextInput, View } from 'react-native'
 import { setTasks} from '../redux/action';
 import CustomButton from '../utils/CustomButton'
@@ -8,9 +8,13 @@ import CheckBox from '@react-native-community/checkbox';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+import { AuthContext } from './context';
+
 export default function Task({navigation}) {
 
     const {tasks , taskID} = useSelector(state => state.taskReducer);
+
+    const {signOut}  = useContext(AuthContext);
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -68,9 +72,6 @@ export default function Task({navigation}) {
         }
     }
 
-    const setTaskAlarm = () => {
-
-    }
 
     return (
         <View style={styles.body}>
@@ -210,6 +211,14 @@ export default function Task({navigation}) {
             color="#1eb900"
             style={{ width: '60%'}}
             onPressFunction={setTaskbro} />
+
+
+           <CustomButton 
+            title='Log Out'
+            color="#1eb900"
+            style={{ width: '60%'}}
+            onPressFunction={() => {signOut()}} />
+
         </View>
     )
 }
